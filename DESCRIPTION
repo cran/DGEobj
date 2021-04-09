@@ -1,7 +1,7 @@
 Package: DGEobj
 Type: Package
 Title: Differential Gene Expression (DGE) Analysis Results Data Object
-Version: 1.0.1
+Version: 1.0.3
 Description: 
     Provides a flexible container to manage and annotate Differential Gene 
     Expression (DGE) analysis results (Smythe et. al (2015) <doi:10.1093/nar/gkv007>).  
@@ -25,14 +25,15 @@ Language: en-US
 Encoding: UTF-8
 Imports: assertthat, magrittr, stringr, utils, GenomicRanges
 RoxygenNote: 7.1.1
-Suggests: knitr, rmarkdown, testthat, edgeR
+Suggests: conflicted, dplyr, glue, knitr, rmarkdown, testthat, biomaRt,
+        edgeR
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-12-03 19:18:21 UTC; conniebrett
+Packaged: 2021-04-09 21:14:08 UTC; conniebrett
 Author: John Thompson [aut],
   Connie Brett [aut, cre],
   Isaac Neuhaus [aut],
   Ryan Thompson [aut]
 Maintainer: Connie Brett <connie@aggregate-genius.com>
 Repository: CRAN
-Date/Publication: 2020-12-07 09:30:02 UTC
+Date/Publication: 2021-04-09 21:30:02 UTC
