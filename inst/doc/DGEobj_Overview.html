@@ -16,7 +16,19 @@
 
 <title>DGEobj: An S3 Object to Capture and Annotate DGE Workflows</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -128,7 +140,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -140,31 +332,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h1 class="title toc-ignore">DGEobj: An S3 Object to Capture and Annotate DGE Workflows</h1>
+<h1 class="title toc-ignore">DGEobj: An S3 Object to Capture and
+Annotate DGE Workflows</h1>
 <h4 class="author">John R. Thompson</h4>
 <h4 class="date">2022-03-24</h4>
 
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
-<li><a href="#dgeobj-overview"><span class="toc-section-number">2</span> DGEobj Overview</a>
+<li><a href="#introduction"><span class="toc-section-number">1</span>
+Introduction</a></li>
+<li><a href="#dgeobj-overview"><span class="toc-section-number">2</span>
+DGEobj Overview</a>
 <ul>
-<li><a href="#dgeobj-nomenclature-items-types-and-base-types"><span class="toc-section-number">2.1</span> DGEobj Nomenclature: Items, Types and Base Types</a></li>
+<li><a href="#dgeobj-nomenclature-items-types-and-base-types"><span class="toc-section-number">2.1</span> DGEobj Nomenclature: Items, Types
+and Base Types</a></li>
 </ul></li>
 <li><a href="#dgeobj-structure"><span class="toc-section-number">3</span> DGEobj Structure</a>
 <ul>
-<li><a href="#preserving-the-original-data"><span class="toc-section-number">3.1</span> Preserving the Original Data</a></li>
+<li><a href="#preserving-the-original-data"><span class="toc-section-number">3.1</span> Preserving the Original
+Data</a></li>
 </ul></li>
 <li><a href="#building-a-dge-data-object"><span class="toc-section-number">4</span> Building a DGE data object</a>
 <ul>
-<li><a href="#demonstration-dataset-rat-liver-slice-compound-treatments"><span class="toc-section-number">4.1</span> Demonstration Dataset: Rat Liver Slice Compound Treatments</a></li>
-<li><a href="#initializing-a-dgeobj-from-dataframes"><span class="toc-section-number">4.2</span> Initializing a DGEobj from dataframes</a>
+<li><a href="#demonstration-dataset-rat-liver-slice-compound-treatments"><span class="toc-section-number">4.1</span> Demonstration Dataset: Rat Liver
+Slice Compound Treatments</a></li>
+<li><a href="#initializing-a-dgeobj-from-dataframes"><span class="toc-section-number">4.2</span> Initializing a DGEobj from
+dataframes</a>
 <ul>
-<li><a href="#retrieve-geo-data-for-gse120804"><span class="toc-section-number">4.2.1</span> Retrieve GEO data for GSE120804</a></li>
-<li><a href="#prepare-the-design-table"><span class="toc-section-number">4.2.2</span> Prepare the Design Table</a></li>
-<li><a href="#retrieve-gene-annotation-from-ensembl"><span class="toc-section-number">4.2.3</span> Retrieve Gene Annotation from Ensembl</a></li>
-<li><a href="#validate-dataframe-relationships"><span class="toc-section-number">4.2.4</span> Validate Dataframe Relationships</a></li>
+<li><a href="#retrieve-geo-data-for-gse120804"><span class="toc-section-number">4.2.1</span> Retrieve GEO data for
+GSE120804</a></li>
+<li><a href="#prepare-the-design-table"><span class="toc-section-number">4.2.2</span> Prepare the Design
+Table</a></li>
+<li><a href="#retrieve-gene-annotation-from-ensembl"><span class="toc-section-number">4.2.3</span> Retrieve Gene Annotation from
+Ensembl</a></li>
+<li><a href="#validate-dataframe-relationships"><span class="toc-section-number">4.2.4</span> Validate Dataframe
+Relationships</a></li>
 <li><a href="#instantiate-the-dgeobj"><span class="toc-section-number">4.2.5</span> Instantiate the DGEobj</a></li>
 </ul></li>
 </ul></li>
@@ -172,7 +375,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#inventory-function"><span class="toc-section-number">5.1</span> Inventory function</a></li>
 <li><a href="#examine-dgeobj-metadata"><span class="toc-section-number">5.2</span> Examine DGEobj Metadata</a></li>
-<li><a href="#dgeobj-length-and-dimensions"><span class="toc-section-number">5.3</span> DGEobj Length and Dimensions</a></li>
+<li><a href="#dgeobj-length-and-dimensions"><span class="toc-section-number">5.3</span> DGEobj Length and
+Dimensions</a></li>
 <li><a href="#rownames-and-colnames"><span class="toc-section-number">5.4</span> Rownames and Colnames</a></li>
 <li><a href="#subsetting-a-dgeobj"><span class="toc-section-number">5.5</span> Subsetting a DGEobj</a></li>
 <li><a href="#inventory-of-a-dgeobj"><span class="toc-section-number">5.6</span> Inventory of a DGEobj</a></li>
@@ -180,8 +384,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#alignment-qc-example"><span class="toc-section-number">5.7.1</span> Alignment QC Example</a></li>
 <li><a href="#a-workflow-example"><span class="toc-section-number">5.7.2</span> A Workflow Example</a></li>
-<li><a href="#automating-funargs-entries"><span class="toc-section-number">5.7.3</span> Automating funArgs Entries</a></li>
-<li><a href="#batch-addition-of-multiple-items"><span class="toc-section-number">5.7.4</span> Batch addition of multiple items</a></li>
+<li><a href="#automating-funargs-entries"><span class="toc-section-number">5.7.3</span> Automating funArgs
+Entries</a></li>
+<li><a href="#batch-addition-of-multiple-items"><span class="toc-section-number">5.7.4</span> Batch addition of multiple
+items</a></li>
 </ul></li>
 <li><a href="#pre-defined-item-types"><span class="toc-section-number">5.8</span> Pre-defined Item Types</a></li>
 <li><a href="#adding-a-new-data-type"><span class="toc-section-number">5.9</span> Adding a New Data Type</a></li>
@@ -194,7 +400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#ancillary-functions"><span class="toc-section-number">7</span> Ancillary Functions</a>
 <ul>
 <li><a href="#function-basetype"><span class="toc-section-number">7.1</span> Function baseType</a></li>
-<li><a href="#querying-metadata-stored-in-attributes"><span class="toc-section-number">7.2</span> Querying Metadata Stored in Attributes</a></li>
+<li><a href="#querying-metadata-stored-in-attributes"><span class="toc-section-number">7.2</span> Querying Metadata Stored in
+Attributes</a></li>
 <li><a href="#function-rmitem"><span class="toc-section-number">7.3</span> Function rmItem</a></li>
 <li><a href="#function-setattributes"><span class="toc-section-number">7.4</span> Function setAttributes</a></li>
 <li><a href="#function-showmeta"><span class="toc-section-number">7.5</span> Function showMeta</a></li>
@@ -203,78 +410,230 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#project-meta-data"><span class="toc-section-number">8.1</span> Project Meta Data</a></li>
 <li><a href="#workflow-attributes"><span class="toc-section-number">8.2</span> Workflow attributes</a></li>
-<li><a href="#customizing-the-dgeobj-definition-for-new-data-types"><span class="toc-section-number">8.3</span> Customizing the DGEobj Definition for New Data Types</a></li>
+<li><a href="#customizing-the-dgeobj-definition-for-new-data-types"><span class="toc-section-number">8.3</span> Customizing the DGEobj Definition
+for New Data Types</a></li>
 </ul></li>
 </ul>
 </div>
 
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
-<p>The DGEobj package implements an S3 class data object, the DGEobj, that conceptually represents an extension of the capabilities of the RangedSummarizedExperiment (RSE) developed by <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html">Martin Morgan et al.</a>. Both the DGEobj and the RSE object capture the initial data for a differential gene expression analysis, namely a counts matrix along with associated gene and sample annotation. Additionally, the DGEobj extends this concept to support capture of various downstream data objects, the intermediate steps in an analysis, and thus capture the entire workflow of an analysis project.</p>
-<p>The availability of a collection of results in a specific structured data object has multiple advantages. Sharing DGE results with other colleagues is simplified because the entire analysis is encapsulated and documented within the DGEobj. A recipient of data in this format can examine details of the analysis based on the annotation built into the DGE object. Downstream users of a dataset can retrieve the original data or any intermediate data items the original analyst captured. Importantly, assembling a collection of DGE projects in a structured format enables facile automation of integrative multi-project meta-analyses.</p>
-<p>The RSE object can capture as many assays as desired. An “assay” is defined as any matrix with n genes (rows) and m samples (columns). A limitation of the RSE object however is that the RSE only allows 1 instance of row data (typically gene annotation) and 1 instance of column data (sample annotation with one row for every column of data in the assay slot). This limits the RSE in terms of its ability to hold downstream data objects because many of those objects meet the definition of row data also (e.g. DGElist, Fit objects, topTable output). Other types of data (e.g. design matrices, sample QC) meet the definition of column data. Thus, the DGEobj was modeled after the RSE object, but extended to accommodate multiple row and column data types. The DGEobj is thus uniquely suited to capturing the entire workflow of a DGE analysis.</p>
-<p>While the DGEobj was designed to support a RNA-Seq workflow, extensibility features enable the definition of other data types. Thus the DGEobj data structure may be easily configured for many proteomic or metabolomic applications, or an data domain where the starting data is a 2D matrix of assays and samples.</p>
+<p>The DGEobj package implements an S3 class data object, the DGEobj,
+that conceptually represents an extension of the capabilities of the
+RangedSummarizedExperiment (RSE) developed by <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html">Martin
+Morgan et al.</a>. Both the DGEobj and the RSE object capture the
+initial data for a differential gene expression analysis, namely a
+counts matrix along with associated gene and sample annotation.
+Additionally, the DGEobj extends this concept to support capture of
+various downstream data objects, the intermediate steps in an analysis,
+and thus capture the entire workflow of an analysis project.</p>
+<p>The availability of a collection of results in a specific structured
+data object has multiple advantages. Sharing DGE results with other
+colleagues is simplified because the entire analysis is encapsulated and
+documented within the DGEobj. A recipient of data in this format can
+examine details of the analysis based on the annotation built into the
+DGE object. Downstream users of a dataset can retrieve the original data
+or any intermediate data items the original analyst captured.
+Importantly, assembling a collection of DGE projects in a structured
+format enables facile automation of integrative multi-project
+meta-analyses.</p>
+<p>The RSE object can capture as many assays as desired. An “assay” is
+defined as any matrix with n genes (rows) and m samples (columns). A
+limitation of the RSE object however is that the RSE only allows 1
+instance of row data (typically gene annotation) and 1 instance of
+column data (sample annotation with one row for every column of data in
+the assay slot). This limits the RSE in terms of its ability to hold
+downstream data objects because many of those objects meet the
+definition of row data also (e.g. DGElist, Fit objects, topTable
+output). Other types of data (e.g. design matrices, sample QC) meet the
+definition of column data. Thus, the DGEobj was modeled after the RSE
+object, but extended to accommodate multiple row and column data types.
+The DGEobj is thus uniquely suited to capturing the entire workflow of a
+DGE analysis.</p>
+<p>While the DGEobj was designed to support a RNA-Seq workflow,
+extensibility features enable the definition of other data types. Thus
+the DGEobj data structure may be easily configured for many proteomic or
+metabolomic applications, or an data domain where the starting data is a
+2D matrix of assays and samples.</p>
 </div>
 <div id="dgeobj-overview" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> DGEobj Overview</h1>
 <div id="dgeobj-nomenclature-items-types-and-base-types" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> DGEobj Nomenclature: Items, Types and Base Types</h2>
-<p>Multiple instances of a base type are accommodated by defining data “types” and “items”. Each data type is assigned a base type (e.g. geneData, GRanges, and Fit objects are all “types” of “baseType” = rowData).</p>
-<p>Importantly, multiple instances of each type are allowed (exceptions described in Unique Items section) as long as each instance of a type is named uniquely. Each instance of a “type” is described as an “item” and each item must have a user-defined item name. The item name must be unique within a DGEobj.</p>
-<p>The DGEobj package implements an S3 class data object, the DGEobj, that conceptually represents an extension of the capabilities of the RangedSummarizedExperiment (RSE) originally developed by Martin Morgan et al. Both the DGEobj and the RSE object capture the initial data for a differential gene expression analysis, namely a counts matrix along with associated gene and sample annotation. Additionally, the DGEobj extends this concept to support capture of various downstream data objects, the intermediate steps in an analysis, and thus capture the entire workflow of an analysis project.</p>
-<p>The availability of a collection of results in a specific structured data object has multiple advantages. Sharing DGE results with other colleagues is simplified because the entire analysis is encapsulated and documented within the DGEobj. A recipient of data in this format can examine details of the analysis based on the annotation built into the DGE object. Downstream users of a dataset can drill back to the original data or tap any intermediate data items the original analyst captured. Importantly, assembling a collection of DGE projects in a structured format enables facile automation of integrative multi-project metaanalyses.</p>
-<p>The RSE object, which motivated building the DGEobj, can capture as many assays as desired. An “assay” is defined as any matrix with n genes (rows) and m samples (columns). A limitation of the RSE object however is that the RSE only allows 1 instance of row data (typically gene annotation) and 1 instance of column data (sample annotation with one row for every column of data in the assay slot). This limits the RSE in terms of its ability to hold downstream data objects because many of those objects meet the definition of row data also (e.g. DGElist, Fit objects, topTable output). Other types of data (e.g. design matrices, sample QC) meet the definition of column data. Thus, the DGEobj was modeled after the RSE object, but extended to accommodate multiple row and column data types. The DGEobj is thus uniquely suited to capturing the entire workflow of a DGE analysis.</p>
+<h2><span class="header-section-number">2.1</span> DGEobj Nomenclature:
+Items, Types and Base Types</h2>
+<p>Multiple instances of a base type are accommodated by defining data
+“types” and “items”. Each data type is assigned a base type
+(e.g. geneData, GRanges, and Fit objects are all “types” of “baseType” =
+rowData).</p>
+<p>Importantly, multiple instances of each type are allowed (exceptions
+described in Unique Items section) as long as each instance of a type is
+named uniquely. Each instance of a “type” is described as an “item” and
+each item must have a user-defined item name. The item name must be
+unique within a DGEobj.</p>
+<p>The DGEobj package implements an S3 class data object, the DGEobj,
+that conceptually represents an extension of the capabilities of the
+RangedSummarizedExperiment (RSE) originally developed by Martin Morgan
+et al. Both the DGEobj and the RSE object capture the initial data for a
+differential gene expression analysis, namely a counts matrix along with
+associated gene and sample annotation. Additionally, the DGEobj extends
+this concept to support capture of various downstream data objects, the
+intermediate steps in an analysis, and thus capture the entire workflow
+of an analysis project.</p>
+<p>The availability of a collection of results in a specific structured
+data object has multiple advantages. Sharing DGE results with other
+colleagues is simplified because the entire analysis is encapsulated and
+documented within the DGEobj. A recipient of data in this format can
+examine details of the analysis based on the annotation built into the
+DGE object. Downstream users of a dataset can drill back to the original
+data or tap any intermediate data items the original analyst captured.
+Importantly, assembling a collection of DGE projects in a structured
+format enables facile automation of integrative multi-project
+metanalyses.</p>
+<p>The RSE object, which motivated building the DGEobj, can capture as
+many assays as desired. An “assay” is defined as any matrix with n genes
+(rows) and m samples (columns). A limitation of the RSE object however
+is that the RSE only allows 1 instance of row data (typically gene
+annotation) and 1 instance of column data (sample annotation with one
+row for every column of data in the assay slot). This limits the RSE in
+terms of its ability to hold downstream data objects because many of
+those objects meet the definition of row data also (e.g. DGElist, Fit
+objects, topTable output). Other types of data (e.g. design matrices,
+sample QC) meet the definition of column data. Thus, the DGEobj was
+modeled after the RSE object, but extended to accommodate multiple row
+and column data types. The DGEobj is thus uniquely suited to capturing
+the entire workflow of a DGE analysis.</p>
 </div>
 </div>
 <div id="dgeobj-structure" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> DGEobj Structure</h1>
-<p>The DGEobj supports four distinct data types, that we refer to as “base types”:</p>
+<p>The DGEobj supports four distinct data types, that we refer to as
+“base types”:</p>
 <ul>
-<li><em>assay data</em>: dataframes or matrices of data with n rows (genes or transcripts) and m columns (samples)</li>
-<li><em>rowData</em>: a dataframe with n rows typically containing information about each gene with as many columns as needed (gene ID, gene symbols, chromosome information, etc). Other types of rowData include the edgeR DGElist object, design matrices, and Fit objects</li>
-<li><em>colData</em>: a dataframe with m rows, that is, one row for each sample column in the assay slot</li>
-<li><em>metaData</em>: anything that doesn’t align with row or col data</li>
+<li><em>assay data</em>: dataframes or matrices of data with n rows
+(genes or transcripts) and m columns (samples)</li>
+<li><em>rowData</em>: a dataframe with n rows typically containing
+information about each gene with as many columns as needed (gene ID,
+gene symbols, chromosome information, etc). Other types of rowData
+include the edgeR DGElist object, design matrices, and Fit objects</li>
+<li><em>colData</em>: a dataframe with m rows, that is, one row for each
+sample column in the assay slot</li>
+<li><em>metaData</em>: anything that doesn’t align with row or col
+data</li>
 </ul>
-<p>Fundamentally, the base type defines how an item should be subsetted (see the section on subsetting below).</p>
-<p>The design goal of the DGEobj is that it should capture the workflow and analysis results of a single dataset. As such, certain items that constitute the “raw” or starting point data are assigned a “unique” attribute that limits such “types” to one instance per DGEobj.</p>
-<p>Three items: counts, design (sample information), and geneData (or isoformData, or exonData) are defined as unique. If complete chromosome location data (Chr, Start, End, Strand) are supplied in the geneData item, then a GRanges item is also created upon initializing a DGEobj.</p>
-<p>Importantly, multiple instances of each type are allowed (exceptions described in Unique Items section) as long as each instance of a type is named uniquely. Each instance of a “type” is described as an “item” and each item must have a user-defined item name. The item name must be unique within a DGEobj.</p>
-<p>“Levels” are predefined for DGEobj objects to accommodate RNA-Seq and Affymetrix RNA expression applications (allowedLevels = c(“gene”, “isoform”, “exon”, “affy”)). A DGEobj may contain only one of these levels. Thus a user would need to create separate DGEobjs for gene and isoform level data in an RNA transcription analysis mode.</p>
-<p>See the “Customizing the DGEobj” section below to define new levels.</p>
+<p>Fundamentally, the base type defines how an item should be subsetted
+(see the section on subsetting below).</p>
+<p>The design goal of the DGEobj is that it should capture the workflow
+and analysis results of a single dataset. As such, certain items that
+constitute the “raw” or starting point data are assigned a “unique”
+attribute that limits such “types” to one instance per DGEobj.</p>
+<p>Three items: counts, design (sample information), and geneData (or
+isoformData, or exonData) are defined as unique. If complete chromosome
+location data (Chr, Start, End, Strand) are supplied in the geneData
+item, then a GRanges item is also created upon initializing a
+DGEobj.</p>
+<p>Importantly, multiple instances of each type are allowed (exceptions
+described in Unique Items section) as long as each instance of a type is
+named uniquely. Each instance of a “type” is described as an “item” and
+each item must have a user-defined item name. The item name must be
+unique within a DGEobj.</p>
+<p>“Levels” are predefined for DGEobj objects to accommodate RNA-Seq and
+Affymetrix RNA expression applications (allowedLevels = c(“gene”,
+“isoform”, “exon”, “affy”)). A DGEobj may contain only one of these
+levels. Thus a user would need to create separate DGEobjs for gene and
+isoform level data in an RNA transcription analysis mode.</p>
+<p>See the “Customizing the DGEobj” section below to define new
+levels.</p>
 <p>Gene level data will be used within this vignette.</p>
-<p>Several levels are predefined for DGEobj objects to accommodate RNA and proteomic applications (allowedLevels = c(“gene”, “isoform”, “exon”, “proteingroup”, “peptide”, “ptm”, “protein”)). A DGEobj may contain only one of these levels. Thus a user would need to create separate DGEobjs for gene and isoform level data in an RNA transcription analysis mode. Gene level data will be used Within this vignette.</p>
-<p>An analysis can become multi-threaded. For example, multiple models can be fit to one dataset each with its own set of contrasts. Two features of the DGEobj serve to manage multi-threaded analyses. First, only one instance of the starting data types are allowed. Thus all analysis thread map back to the starting data. Secondly, parent/child relationships are captured. Each data item carries a parent attribute that holds the item name of the parent data item. In this way, for example, a topTable item can be linked to the design matrix and fit that produced it.</p>
+<p>Several levels are predefined for DGEobj objects to accommodate RNA
+and proteomic applications (allowedLevels = c(“gene”, “isoform”, “exon”,
+“proteingroup”, “peptide”, “ptm”, “protein”)). A DGEobj may contain only
+one of these levels. Thus a user would need to create separate DGEobjs
+for gene and isoform level data in an RNA transcription analysis mode.
+Gene level data will be used Within this vignette.</p>
+<p>An analysis can become multi-threaded. For example, multiple models
+can be fit to one dataset each with its own set of contrasts. Two
+features of the DGEobj serve to manage multi-threaded analyses. First,
+only one instance of the starting data types are allowed. Thus all
+analysis thread map back to the starting data. Secondly, parent/child
+relationships are captured. Each data item carries a parent attribute
+that holds the item name of the parent data item. In this way, for
+example, a topTable item can be linked to the design matrix and fit that
+produced it.</p>
 <div id="preserving-the-original-data" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Preserving the Original Data</h2>
-<p>In the course of a workflow an analyst will often need to subset the DGEobj based on low signal or other characteristics. However, a downstream analyst may need to start their analysis with the original unsubsetted data. For this reason, when the DGEobj is initialized, a copy of the starting data is also stored in a metadata slot. Metadata slots are carried along without subsetting so the original data may always be retrieved from these metadata items. The item names of the original data in the metadata slot have a “_orig” suffix.</p>
+<h2><span class="header-section-number">3.1</span> Preserving the
+Original Data</h2>
+<p>In the course of a workflow an analyst will often need to subset the
+DGEobj based on low signal or other characteristics. However, a
+downstream analyst may need to start their analysis with the original
+unsubsetted data. For this reason, when the DGEobj is initialized, a
+copy of the starting data is also stored in a metadata slot. Metadata
+slots are carried along without subsetting so the original data may
+always be retrieved from these metadata items. The item names of the
+original data in the metadata slot have a “_orig” suffix.</p>
 </div>
 </div>
 <div id="building-a-dge-data-object" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Building a DGE data object</h1>
-<p>A DGEobj is initialized from a set of three data frames containing the primary assay matrix (typically a counts matrix for RNA-Seq applications), a set of row annotation (gene data) and an experiment design table with information about the samples (columns) of the assay matrix. For the example below, a GEO dataset will be downloaded and encapsulated as a DGEobj.</p>
+<h1><span class="header-section-number">4</span> Building a DGE data
+object</h1>
+<p>A DGEobj is initialized from a set of three data frames containing
+the primary assay matrix (typically a counts matrix for RNA-Seq
+applications), a set of row annotation (gene data) and an experiment
+design table with information about the samples (columns) of the assay
+matrix. For the example below, a GEO dataset will be downloaded and
+encapsulated as a DGEobj.</p>
 <div id="demonstration-dataset-rat-liver-slice-compound-treatments" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Demonstration Dataset: Rat Liver Slice Compound Treatments</h2>
-<p>The following dataset was selected to demonstrate building and working with the DGEobj data structure.</p>
+<h2><span class="header-section-number">4.1</span> Demonstration
+Dataset: Rat Liver Slice Compound Treatments</h2>
+<p>The following dataset was selected to demonstrate building and
+working with the DGEobj data structure.</p>
 <blockquote>
-<p>Huang X, Cai H, Ammar R, Zhang Y et al. Molecular characterization of a precision-cut rat liver slice model for the evaluation of antifibrotic compounds. Am J Physiol Gastrointest Liver Physiol 2019 Jan 1;316(1):G15-G24. PMID: 30406699</p>
+<p>Huang X, Cai H, Ammar R, Zhang Y et al. Molecular characterization of
+a precision-cut rat liver slice model for the evaluation of antifibrotic
+compounds. Am J Physiol Gastrointest Liver Physiol 2019 Jan
+1;316(1):G15-G24. PMID: 30406699</p>
 </blockquote>
-<p>Briefly, livers were removed from rats 4 weeks after bile duct ligation or sham operation. Rat liver slices were incubated in vitro with potential anti-fibrotic compounds. At the end of the incubation whole transcriptome RNA-Seq analysis was performed.</p>
-<p>Files containing counts, sample annotations, and QC data associated with this project will be downloaded from the <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120804">NCBI GEO resource</a>.</p>
-<p>The GEO data includes Ensembl gene IDs. Additional gene information such as chromosome positions, type of transcript, etc, will be downloaded from Ensembl using the biomaRt package.</p>
+<p>Briefly, livers were removed from rats 4 weeks after bile duct
+ligation or sham operation. Rat liver slices were incubated in vitro
+with potential anti-fibrotic compounds. At the end of the incubation
+whole transcriptome RNA-Seq analysis was performed.</p>
+<p>Files containing counts, sample annotations, and QC data associated
+with this project will be downloaded from the <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120804">NCBI
+GEO resource</a>.</p>
+<p>The GEO data includes Ensembl gene IDs. Additional gene information
+such as chromosome positions, type of transcript, etc, will be
+downloaded from Ensembl using the biomaRt package.</p>
 </div>
 <div id="initializing-a-dgeobj-from-dataframes" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Initializing a DGEobj from dataframes</h2>
-<p>Three properly formatted data frames are required to initialize a new DGEobj:</p>
+<h2><span class="header-section-number">4.2</span> Initializing a DGEobj
+from dataframes</h2>
+<p>Three properly formatted data frames are required to initialize a new
+DGEobj:</p>
 <ol style="list-style-type: decimal">
-<li><p>Counts matrix: For RNA-Seq, this is typically a genes x samples matrix or dataframe of numbers. Rownames must be present and contain a unique identifier (e.g. Ensembl geneid). Colnames should be a unique sample identifier.</p></li>
-<li><p>Row Data: Additional annotations for the entities represented by each row. For the RNA-Seq case, this dataframe holds associated gene annotation. The rownames in the RowData must match the rownames in the counts matrix.</p></li>
-<li><p>Col Data: Accordingly the ColData dataframe contains information about the samples (columns) of the counts matrix. We often refer to this as the “design” table because it typically contains the experimental details of the treatment of each sample. The rownames of ColData must match the colnames of the Counts Matrix.</p></li>
+<li><p>Counts matrix: For RNA-Seq, this is typically a genes x samples
+matrix or dataframe of numbers. Rownames must be present and contain a
+unique identifier (e.g. Ensembl geneid). Colnames should be a unique
+sample identifier.</p></li>
+<li><p>Row Data: Additional annotations for the entities represented by
+each row. For the RNA-Seq case, this dataframe holds associated gene
+annotation. The rownames in the RowData must match the rownames in the
+counts matrix.</p></li>
+<li><p>Col Data: Accordingly the ColData dataframe contains information
+about the samples (columns) of the counts matrix. We often refer to this
+as the “design” table because it typically contains the experimental
+details of the treatment of each sample. The rownames of ColData must
+match the colnames of the Counts Matrix.</p></li>
 </ol>
-<p>In addition to these three items, the user must specify the “level” of the data (allowedLevels = c(“gene”, “isoform”, “exon”, “affy”)).</p>
-<p>See the “Customizing the DGEobj” section below to define new levels.</p>
+<p>In addition to these three items, the user must specify the “level”
+of the data (allowedLevels = c(“gene”, “isoform”, “exon”, “affy”)).</p>
+<p>See the “Customizing the DGEobj” section below to define new
+levels.</p>
 <div id="retrieve-geo-data-for-gse120804" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Retrieve GEO data for GSE120804</h3>
-<p>This GEO project includes a counts table, design table, and QC metrics in the supplemental section. The data is downloaded to temp files and imported into data frames to prepare for building a DGEobj.</p>
+<h3><span class="header-section-number">4.2.1</span> Retrieve GEO data
+for GSE120804</h3>
+<p>This GEO project includes a counts table, design table, and QC
+metrics in the supplemental section. The data is downloaded to temp
+files and imported into data frames to prepare for building a
+DGEobj.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the raw counts, sample annotation (&quot;design&quot;) and QC data from GEO</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120804</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>getLocation <span class="ot">&lt;-</span> <span class="st">&quot;http://ftp.ncbi.nlm.nih.gov/geo/series/GSE120nnn/GSE120804/suppl&quot;</span></span>
@@ -301,11 +660,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>alignmentQC <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(temp, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="prepare-the-design-table" class="section level3" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Prepare the Design Table</h3>
-<p>Often the design table will need some manipulation or clean up to properly construct the columns required to support a planned analysis and also to meet the design constraints required for the DGEobj. It is recommended to restructure the design table as needed at the onset of the analysis.</p>
-<p>In this example, the design file lacks a proper linking column to the counts data. The colnames from the counts data should be the rownames for the design table. Fortunately, the colnames from counts are present as a substring within the fastq filename column (design$raw.file). The samplenames will be parsed from the fastq filenames to create a proper linking column between the counts and design data.</p>
+<h3><span class="header-section-number">4.2.2</span> Prepare the Design
+Table</h3>
+<p>Often the design table will need some manipulation or clean up to
+properly construct the columns required to support a planned analysis
+and also to meet the design constraints required for the DGEobj. It is
+recommended to restructure the design table as needed at the onset of
+the analysis.</p>
+<p>In this example, the design file lacks a proper linking column to the
+counts data. The colnames from the counts data should be the rownames
+for the design table. Fortunately, the colnames from counts are present
+as a substring within the fastq filename column (design$raw.file). The
+samplenames will be parsed from the fastq filenames to create a proper
+linking column between the counts and design data.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(design) <span class="ot">&lt;-</span> <span class="fu">str_sub</span>(design<span class="sc">$</span>raw.file, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">21</span>)</span></code></pre></div>
-<p>Additional manipulations to the design data include: * renaming a column * create a design$DiseaseStatus column to indicate whether a liver is derived from a BDL or sham animal * create an animal number column to capture which liver slice samples were derived from the same animal</p>
+<p>Additional manipulations to the design data include: * renaming a
+column * create a design$DiseaseStatus column to indicate whether a
+liver is derived from a BDL or sham animal * create an animal number
+column to capture which liver slice samples were derived from the same
+animal</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#correct the desired case/spelling of one column</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">ReplicateGroup =</span> Replicate.group)</span>
@@ -319,8 +692,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>design<span class="sc">$</span>AnimalNum <span class="ot">&lt;-</span> <span class="fu">str_match</span>(design<span class="sc">$</span>Sample.name, <span class="st">&quot;r[0-9]{1,3}&quot;</span>)</span></code></pre></div>
 </div>
 <div id="retrieve-gene-annotation-from-ensembl" class="section level3" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Retrieve Gene Annotation from Ensembl</h3>
-<p>The GEO data for this project is supplied Ensembl gene IDs but no other gene information. Additional gene information will be collected by querying Ensembl directly.</p>
+<h3><span class="header-section-number">4.2.3</span> Retrieve Gene
+Annotation from Ensembl</h3>
+<p>The GEO data for this project is supplied Ensembl gene IDs but no
+other gene information. Additional gene information will be collected by
+querying Ensembl directly.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now get the gene annotation from Ensembl/biomaRt</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ens.ds      <span class="ot">&lt;-</span> <span class="st">&quot;rnorvegicus_gene_ensembl&quot;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ens.mart    <span class="ot">&lt;-</span> <span class="fu">useMart</span>(<span class="at">biomart =</span> <span class="st">&quot;ensembl&quot;</span>, <span class="at">dataset =</span> ens.ds, <span class="at">host =</span> <span class="st">&quot;https://may2021.archive.ensembl.org&quot;</span>)</span>
@@ -364,47 +740,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>gene.data <span class="ot">&lt;-</span> gene.data[<span class="fu">rownames</span>(counts),]</span></code></pre></div>
 </div>
 <div id="validate-dataframe-relationships" class="section level3" number="4.2.4">
-<h3><span class="header-section-number">4.2.4</span> Validate Dataframe Relationships</h3>
-<p>As mentioned earlier, rownames and column names provide links between the three starting data frames.</p>
+<h3><span class="header-section-number">4.2.4</span> Validate Dataframe
+Relationships</h3>
+<p>As mentioned earlier, rownames and column names provide links between
+the three starting data frames.</p>
 <ul>
-<li>The rownames in the gene annotation must match the rownames in the counts matrix.</li>
-<li>The rownames of the design table must match the colnames of the counts matrix.</li>
+<li>The rownames in the gene annotation must match the rownames in the
+counts matrix.</li>
+<li>The rownames of the design table must match the colnames of the
+counts matrix.</li>
 </ul>
-<p>These statements perform a reality check on these two constraints.</p>
+<p>These statements perform a reality check on these two
+constraints.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">rownames</span>(counts) <span class="sc">==</span> <span class="fu">rownames</span>(gene.data))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(<span class="fu">colnames</span>(counts) <span class="sc">==</span> <span class="fu">rownames</span>(design))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="instantiate-the-dgeobj" class="section level3" number="4.2.5">
-<h3><span class="header-section-number">4.2.5</span> Instantiate the DGEobj</h3>
-<p>With the above constraints met, the three data frames can be used to instantiate a DGEobj. In addition the “level” of the data must be specified in the “level” argument (Allowed levels include “gene”, “isoform”, “exon”, “affy”). Finally, two attributes are added via the customAttr argument to annotate the genome and gene model set used for the alignments used to produce the count data.</p>
+<h3><span class="header-section-number">4.2.5</span> Instantiate the
+DGEobj</h3>
+<p>With the above constraints met, the three data frames can be used to
+instantiate a DGEobj. In addition the “level” of the data must be
+specified in the “level” argument (Allowed levels include “gene”,
+“isoform”, “exon”, “affy”). Finally, two attributes are added via the
+customAttr argument to annotate the genome and gene model set used for
+the alignments used to produce the count data.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dgeObj <span class="ot">&lt;-</span> DGEobj<span class="sc">::</span><span class="fu">initDGEobj</span>(<span class="at">primaryAssayData  =</span> counts,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">rowData =</span> gene.data,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colData =</span> design,</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">level =</span> <span class="st">&quot;gene&quot;</span>,</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">customAttr =</span> <span class="fu">list</span>(<span class="at">Genome    =</span> <span class="st">&quot;Rat.B6.0&quot;</span>,</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">GeneModel =</span> <span class="st">&quot;Ensembl.R89&quot;</span>))</span></code></pre></div>
-<p>Although it is possible to add many or all project attributes with the customAttr argument, this can also be tedious when many more attributes are desired. A more convenient way to add project attributes to the DGEobj is provided using the annotateDGEobj function. This function reads key/value pairs from a text file. Thus a text file template can be provided to less technical collaborators to capture important experiment metadata.</p>
+<p>Although it is possible to add many or all project attributes with
+the customAttr argument, this can also be tedious when many more
+attributes are desired. A more convenient way to add project attributes
+to the DGEobj is provided using the annotateDGEobj function. This
+function reads key/value pairs from a text file. Thus a text file
+template can be provided to less technical collaborators to capture
+important experiment metadata.</p>
 <p>The annotation file for this project looks like this:</p>
 <blockquote>
 <p># Some basic metadata about the project</p>
-<p>level=gene source=<a href="https://github.com/cb4ds/DGEobj/blob/master/vignettes/DGEobj_Overview.Rmd" class="uri">https://github.com/cb4ds/DGEobj/blob/master/vignettes/DGEobj_Overview.Rmd</a> ID=BDL_Rat_LiverSlice_03Dec2017 BMS_PID=P-20170808-0001 Title=Rat Liver Slices from Bile Duct Ligation animals Organism=Rat GeneModel=Ensembl.R89 PlatformType=RNA-Seq Description=Rat livers slices from sham or BDL +/- efficacious treatments incubated in vitro Keywords=Liver slices; Bile Duct Ligation Disease=Liver Fibrosis Tissue=Liver GEO=GSE120804</p>
+<p>level=gene source=<a href="https://github.com/cb4ds/DGEobj/blob/master/vignettes/DGEobj_Overview.Rmd" class="uri">https://github.com/cb4ds/DGEobj/blob/master/vignettes/DGEobj_Overview.Rmd</a>
+ID=BDL_Rat_LiverSlice_03Dec2017 BMS_PID=P-20170808-0001 Title=Rat Liver
+Slices from Bile Duct Ligation animals Organism=Rat
+GeneModel=Ensembl.R89 PlatformType=RNA-Seq Description=Rat livers slices
+from sham or BDL +/- efficacious treatments incubated in vitro
+Keywords=Liver slices; Bile Duct Ligation Disease=Liver Fibrosis
+Tissue=Liver GEO=GSE120804</p>
 <p># additional descriptive attributes</p>
-<p>Technology=Illumina-HiSeq LibraryPrep=TruSeq Stranded Total RNA AlignmentReference=Rat.B6.0 ReadType=PE Pipeline=RNA-Seq_BMS_v2.4.pscript AlignmentAlgorithm=OSA ScriptID=RNA-Seq_BMS_v2.4.pscript</p>
+<p>Technology=Illumina-HiSeq LibraryPrep=TruSeq Stranded Total RNA
+AlignmentReference=Rat.B6.0 ReadType=PE
+Pipeline=RNA-Seq_BMS_v2.4.pscript AlignmentAlgorithm=OSA
+ScriptID=RNA-Seq_BMS_v2.4.pscript</p>
 <p># Institutional attributes</p>
-<p>BusinessUnit=Discovery FunctionalArea=Fibrosis Vendor=BMS TBio_Owner=Ron Ammar TA_Owner=John Huang</p>
+<p>BusinessUnit=Discovery FunctionalArea=Fibrosis Vendor=BMS
+TBio_Owner=Ron Ammar TA_Owner=John Huang</p>
 </blockquote>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the annotation information is stored in a temporary .txt file</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>dgeObj <span class="ot">&lt;-</span> <span class="fu">annotateDGEobj</span>(dgeObj, annotationFile)</span></code></pre></div>
-<p>The DGE object now contains the starting data and metadata and is analysis-ready.</p>
+<p>The DGE object now contains the starting data and metadata and is
+analysis-ready.</p>
 </div>
 </div>
 </div>
 <div id="examining-a-dge-object" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Examining a DGE object</h1>
+<h1><span class="header-section-number">5</span> Examining a DGE
+object</h1>
 <div id="inventory-function" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Inventory function</h2>
+<h2><span class="header-section-number">5.1</span> Inventory
+function</h2>
 <p>To view a listing of the items in the DGEobj:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">inventory</span>(dgeObj))</span></code></pre></div>
 <table style="width:100%;">
@@ -515,8 +921,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="examine-dgeobj-metadata" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Examine DGEobj Metadata</h2>
-<p>Use the <code>showMeta</code> function to list the meta data associated with a project.</p>
+<h2><span class="header-section-number">5.2</span> Examine DGEobj
+Metadata</h2>
+<p>Use the <code>showMeta</code> function to list the meta data
+associated with a project.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">showMeta</span>(dgeObj))</span></code></pre></div>
 <table>
 <colgroup>
@@ -576,7 +984,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td align="left">Description</td>
-<td align="left">Rat livers slices from sham or BDL +/- efficacious treatments incubated in vitro</td>
+<td align="left">Rat livers slices from sham or BDL +/- efficacious
+treatments incubated in vitro</td>
 </tr>
 <tr class="odd">
 <td align="left">Keywords</td>
@@ -646,24 +1055,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="dgeobj-length-and-dimensions" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> DGEobj Length and Dimensions</h2>
-<p>The length of a DGEobj refers to the number of data items in the DGEobj.</p>
+<h2><span class="header-section-number">5.3</span> DGEobj Length and
+Dimensions</h2>
+<p>The length of a DGEobj refers to the number of data items in the
+DGEobj.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(dgeObj)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<p>The dimensions reported for a DGEobj are the dimensions of the assays contained in the DGEobj. That is, for the RNA-Seq application, the row dimension is the number of genes contained in the object and the column dimension is the number of samples contained in the object.</p>
+<p>The dimensions reported for a DGEobj are the dimensions of the assays
+contained in the DGEobj. That is, for the RNA-Seq application, the row
+dimension is the number of genes contained in the object and the column
+dimension is the number of samples contained in the object.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dgeObj)</span></code></pre></div>
 <pre><code>## [1] 32883    48</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dgeObj<span class="sc">$</span>counts)</span></code></pre></div>
 <pre><code>## [1] 32883    48</code></pre>
 </div>
 <div id="rownames-and-colnames" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Rownames and Colnames</h2>
-<p>The rownames and colnames of the DGEobj are defined by the primary “assay” matrix in a DGEobj, typically the counts matrix for RNA-Seq data.</p>
-<p>Note, there is no facility provided to re-assign rownames or colnames of a DGEobj. The user should make any adjustments to row/colnames before instantiating the DGEobj.</p>
+<h2><span class="header-section-number">5.4</span> Rownames and
+Colnames</h2>
+<p>The rownames and colnames of the DGEobj are defined by the primary
+“assay” matrix in a DGEobj, typically the counts matrix for RNA-Seq
+data.</p>
+<p>Note, there is no facility provided to re-assign rownames or colnames
+of a DGEobj. The user should make any adjustments to row/colnames before
+instantiating the DGEobj.</p>
 </div>
 <div id="subsetting-a-dgeobj" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> Subsetting a DGEobj</h2>
-<p>A DGEobj may be square bracket subsetted similar the same way data frames and matrices may be subsetted. The subsetting function uses the base type to define how each data item is handled during subsetting. During subsetting, metadata items are carried along unchanged.</p>
+<h2><span class="header-section-number">5.5</span> Subsetting a
+DGEobj</h2>
+<p>A DGEobj may be square bracket subsetted similar the same way data
+frames and matrices may be subsetted. The subsetting function uses the
+base type to define how each data item is handled during subsetting.
+During subsetting, metadata items are carried along unchanged.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#subset to the first 100 genes</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>First100genes <span class="ot">&lt;-</span> dgeObj[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,]</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(First100genes)</span></code></pre></div>
@@ -676,7 +1099,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>AnotherSubset <span class="ot">&lt;-</span> dgeObj[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(AnotherSubset)</span></code></pre></div>
 <pre><code>## [1] 100  10</code></pre>
-<p>Boolean vectors may also be used to subset dimensions of a DGEobj.</p>
+<p>Boolean vectors may also be used to subset dimensions of a
+DGEobj.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select a subset of samples</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> dgeObj<span class="sc">$</span>design<span class="sc">$</span>DiseaseStatus <span class="sc">==</span> <span class="st">&quot;BDL&quot;</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>BDLonly <span class="ot">&lt;-</span> dgeObj[,idx]</span>
@@ -684,8 +1108,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 32883    39</code></pre>
 </div>
 <div id="inventory-of-a-dgeobj" class="section level2" number="5.6">
-<h2><span class="header-section-number">5.6</span> Inventory of a DGEobj</h2>
-<p>The <code>inventory</code> function prints a table of the data items present in a DGEobj. The output includes the item name, type, baseType, parent, class, and date created. If the <code>verbose = TRUE</code> argument is used, a <code>funArgs</code> column is also included.</p>
+<h2><span class="header-section-number">5.6</span> Inventory of a
+DGEobj</h2>
+<p>The <code>inventory</code> function prints a table of the data items
+present in a DGEobj. The output includes the item name, type, baseType,
+parent, class, and date created. If the <code>verbose = TRUE</code>
+argument is used, a <code>funArgs</code> column is also included.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">inventory</span>(dgeObj))</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
@@ -793,15 +1221,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>If just the item names of data stored in the DGEobj are needed, use the base R <code>names</code> function.</p>
+<p>If just the item names of data stored in the DGEobj are needed, use
+the base R <code>names</code> function.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dgeObj)</span></code></pre></div>
 <pre><code>## [1] &quot;counts_orig&quot;   &quot;counts&quot;        &quot;design_orig&quot;   &quot;design&quot;        &quot;geneData_orig&quot; &quot;geneData&quot;      &quot;granges_orig&quot;  &quot;granges&quot;</code></pre>
 </div>
 <div id="adding-items-to-a-dgeobj" class="section level2" number="5.7">
-<h2><span class="header-section-number">5.7</span> Adding Items to a DGEobj</h2>
+<h2><span class="header-section-number">5.7</span> Adding Items to a
+DGEobj</h2>
 <div id="alignment-qc-example" class="section level3" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> Alignment QC Example</h3>
-<p>Often other sample-related information is available. In this project, for example, the alignment statistics for the RNA-Seq were deposited in GEO and downloaded with the other data. This example adds the alignment statistics to the DGEobj. The alignment QC data as downloaded needs to be transposed to place samples in rows. Once transposed, this data meets the criteria for the colData type “alignQC” and is added to the DGEobj. As a new data item not derived directly from the existing items, the alignment QC lacks parent or funArgs values in this context.</p>
+<h3><span class="header-section-number">5.7.1</span> Alignment QC
+Example</h3>
+<p>Often other sample-related information is available. In this project,
+for example, the alignment statistics for the RNA-Seq were deposited in
+GEO and downloaded with the other data. This example adds the alignment
+statistics to the DGEobj. The alignment QC data as downloaded needs to
+be transposed to place samples in rows. Once transposed, this data meets
+the criteria for the colData type “alignQC” and is added to the DGEobj.
+As a new data item not derived directly from the existing items, the
+alignment QC lacks parent or funArgs values in this context.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(alignmentQC) <span class="ot">&lt;-</span> alignmentQC<span class="sc">$</span>Metric</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>alignmentQC <span class="ot">&lt;-</span> alignmentQC <span class="sc">%&gt;%</span></span>
@@ -815,8 +1253,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">itemType =</span> <span class="st">&quot;alignQC&quot;</span>)</span></code></pre></div>
 </div>
 <div id="a-workflow-example" class="section level3" number="5.7.2">
-<h3><span class="header-section-number">5.7.2</span> A Workflow Example</h3>
-<p>As an analysis progresses, the data analyst should capture intermediate data objects deemed important to properly documenting the workflow. In the example here, the counts will be normalized and the resulting DGElist data item added to the DGEobj.</p>
+<h3><span class="header-section-number">5.7.2</span> A Workflow
+Example</h3>
+<p>As an analysis progresses, the data analyst should capture
+intermediate data objects deemed important to properly documenting the
+workflow. In the example here, the counts will be normalized and the
+resulting DGElist data item added to the DGEobj.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform TMM normalization on the raw counts</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>dgelist <span class="ot">&lt;-</span> dgeObj<span class="sc">$</span>counts <span class="sc">%&gt;%</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">DGEList</span>() <span class="sc">%&gt;%</span></span>
@@ -959,17 +1401,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p><strong>item</strong> is the actual data object to add.</p>
-<p><strong>itemName</strong> is the user-defined name for that object.</p>
+<p><strong>itemName</strong> is the user-defined name for that
+object.</p>
 <p><strong>itemType</strong> is the predefined type.</p>
-<p><strong>parent</strong> is the name of the item that this object is derived from.</p>
-<p><strong>funArgs</strong> is a text field intended to documents the processing parameters of a given step in the analysis.</p>
-<p>The <strong>parent</strong> argument is analyst-defined and is particularly important for a multi-threaded analysis. For example, if more than one fit is applied to the data, the parent argument maintains the thread and unambiguously identifies the child objects of each branch in the workflow. The value assigned to parent should be the item name of the parent data object.</p>
-<p>By default <code>addItem</code> will refuse to add an <code>itemname</code> that already exists. There is an overwrite argument to the <code>addItem</code> function although its use is discouraged. Use the <code>overwrite = TRUE</code> argument if it is necessary to make a post-hoc change to an item that already exists in the DGEobj.</p>
+<p><strong>parent</strong> is the name of the item that this object is
+derived from.</p>
+<p><strong>funArgs</strong> is a text field intended to documents the
+processing parameters of a given step in the analysis.</p>
+<p>The <strong>parent</strong> argument is analyst-defined and is
+particularly important for a multi-threaded analysis. For example, if
+more than one fit is applied to the data, the parent argument maintains
+the thread and unambiguously identifies the child objects of each branch
+in the workflow. The value assigned to parent should be the item name of
+the parent data object.</p>
+<p>By default <code>addItem</code> will refuse to add an
+<code>itemname</code> that already exists. There is an overwrite
+argument to the <code>addItem</code> function although its use is
+discouraged. Use the <code>overwrite = TRUE</code> argument if it is
+necessary to make a post-hoc change to an item that already exists in
+the DGEobj.</p>
 </div>
 <div id="automating-funargs-entries" class="section level3" number="5.7.3">
-<h3><span class="header-section-number">5.7.3</span> Automating funArgs Entries</h3>
-<p>If a whole analysis step, together with the addItem call, is contained within a function, it becomes easy to automate capture of function arguments.</p>
-<p>Within a function call, <code>match.call</code> returns the calling function name and arguments. Modifying the normalization example above:</p>
+<h3><span class="header-section-number">5.7.3</span> Automating funArgs
+Entries</h3>
+<p>If a whole analysis step, together with the addItem call, is
+contained within a function, it becomes easy to automate capture of
+function arguments.</p>
+<p>Within a function call, <code>match.call</code> returns the calling
+function name and arguments. Modifying the normalization example
+above:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>runNorm <span class="ot">&lt;-</span> <span class="cf">function</span>(x, method){</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform TMM normalization on the raw counts</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  dgelist <span class="ot">&lt;-</span> x<span class="sc">$</span>counts <span class="sc">%&gt;%</span></span>
@@ -1011,49 +1471,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td align="left">counts_orig</td>
 <td align="left">counts_orig</td>
 <td align="left">meta</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="even">
 <td align="left">counts</td>
 <td align="left">counts</td>
 <td align="left">assay</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="odd">
 <td align="left">design_orig</td>
 <td align="left">design_orig</td>
 <td align="left">meta</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="even">
 <td align="left">design</td>
 <td align="left">design</td>
 <td align="left">col</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="odd">
 <td align="left">geneData_orig</td>
 <td align="left">geneData_orig</td>
 <td align="left">meta</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="even">
 <td align="left">geneData</td>
 <td align="left">geneData</td>
 <td align="left">row</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="odd">
 <td align="left">granges_orig</td>
 <td align="left">granges_orig</td>
 <td align="left">meta</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="even">
 <td align="left">granges</td>
 <td align="left">granges</td>
 <td align="left">row</td>
-<td align="left">::(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”)); initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”))</td>
+<td align="left">::(counts, gene.data, design, gene, list(Genome =
+“Rat.B6.0”, GeneModel = “Ensembl.R89”)); DGEobj(counts, gene.data,
+design, gene, list(Genome = “Rat.B6.0”, GeneModel = “Ensembl.R89”));
+initDGEobj(counts, gene.data, design, gene, list(Genome = “Rat.B6.0”,
+GeneModel = “Ensembl.R89”))</td>
 </tr>
 <tr class="odd">
 <td align="left">AlignmentQC</td>
@@ -1071,9 +1563,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="batch-addition-of-multiple-items" class="section level3" number="5.7.4">
-<h3><span class="header-section-number">5.7.4</span> Batch addition of multiple items</h3>
-<p>The <code>addItem</code> function is typically used to capture each item during the course of an analysis. Another use case is constructing a DGEobj in a post-hoc fashion. In this scenario, it may be more efficient to collect and add multiple items. The <code>addItems</code> function supports this scenario.</p>
-<p>In this example, add a normalized dgelist and a design matrix to the DGEobj:</p>
+<h3><span class="header-section-number">5.7.4</span> Batch addition of
+multiple items</h3>
+<p>The <code>addItem</code> function is typically used to capture each
+item during the course of an analysis. Another use case is constructing
+a DGEobj in a post-hoc fashion. In this scenario, it may be more
+efficient to collect and add multiple items. The <code>addItems</code>
+function supports this scenario.</p>
+<p>In this example, add a normalized dgelist and a design matrix to the
+DGEobj:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform TMM normalization on the raw counts</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dgelist <span class="ot">&lt;-</span> dgeObj<span class="sc">$</span>counts <span class="sc">%&gt;%</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">DGEList</span>() <span class="sc">%&gt;%</span></span>
@@ -1097,16 +1595,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">itemList  =</span> <span class="fu">list</span>(<span class="at">dgelist=</span>dgelist, <span class="at">ReplicateGroupDesign=</span>designMatrix),</span>
 <span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>                     <span class="at">itemTypes =</span> <span class="fu">list</span>(<span class="st">&quot;DGEList&quot;</span>, <span class="st">&quot;designMatrix&quot;</span>),</span>
 <span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>                     <span class="at">parents   =</span> <span class="fu">list</span>(<span class="st">&quot;counts&quot;</span>, <span class="st">&quot;design&quot;</span>))</span></code></pre></div>
-<p><code>itemList</code> is a named list of the data objects to add. The names become the itemNames of the items in the DGEobj.</p>
-<p><code>itemTypes</code> is a list of the types for each item in <code>itemList</code>. see <code>showTypes(DGEobj)</code>.</p>
-<p><code>parents</code> is a list of the parent item names associated with each item in <code>itemList</code>.</p>
-<p><code>itemAttr</code> is an optional named list of attributes that will be added to every item on the <code>itemList</code>. Note that the DGEobj has attributes and each item within the DGEobj can have its own attributes. Here the attributes are being added to the individual items.</p>
+<p><code>itemList</code> is a named list of the data objects to add. The
+names become the itemNames of the items in the DGEobj.</p>
+<p><code>itemTypes</code> is a list of the types for each item in
+<code>itemList</code>. see <code>showTypes(DGEobj)</code>.</p>
+<p><code>parents</code> is a list of the parent item names associated
+with each item in <code>itemList</code>.</p>
+<p><code>itemAttr</code> is an optional named list of attributes that
+will be added to every item on the <code>itemList</code>. Note that the
+DGEobj has attributes and each item within the DGEobj can have its own
+attributes. Here the attributes are being added to the individual
+items.</p>
 </div>
 </div>
 <div id="pre-defined-item-types" class="section level2" number="5.8">
-<h2><span class="header-section-number">5.8</span> Pre-defined Item Types</h2>
-<p>A number of pre-defined item types have been implemented to support the limma/voom DGE workflow for RNA-Seq and Affymetrix data types.</p>
-<p>To see a complete list of pre-defined item types use the <strong>showTypes</strong> function.</p>
+<h2><span class="header-section-number">5.8</span> Pre-defined Item
+Types</h2>
+<p>A number of pre-defined item types have been implemented to support
+the limma/voom DGE workflow for RNA-Seq and Affymetrix data types.</p>
+<p>To see a complete list of pre-defined item types use the
+<strong>showTypes</strong> function.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">arrange</span>(<span class="fu">showTypes</span>(dgeObj), BaseType, Type))</span></code></pre></div>
 <table>
 <thead>
@@ -1331,23 +1839,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="adding-a-new-data-type" class="section level2" number="5.9">
-<h2><span class="header-section-number">5.9</span> Adding a New Data Type</h2>
-<p>The capability to define new data types is core to the extensibility of the DGEobj data structure.</p>
-<p>A set of data types has already been defined based on data types encountered in a typical limma/Voom workflow. The <code>newTypes</code> function is used to define data types to support a novel workflow.</p>
+<h2><span class="header-section-number">5.9</span> Adding a New Data
+Type</h2>
+<p>The capability to define new data types is core to the extensibility
+of the DGEobj data structure.</p>
+<p>A set of data types has already been defined based on data types
+encountered in a typical limma/Voom workflow. The <code>newTypes</code>
+function is used to define data types to support a novel workflow.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new colData datatype called &quot;sampleQC&quot;</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>newDgeObj <span class="ot">&lt;-</span> <span class="fu">newType</span>(dgeObj,</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">itemType =</span> <span class="st">&quot;sampleQC&quot;</span>,</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">baseType =</span> <span class="st">&quot;col&quot;</span>,</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">uniqueItem =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>After executing this call, the newDgeObj now contains the newly defined type definition and is ready to accept data items of that type.</p>
+<p>After executing this call, the newDgeObj now contains the newly
+defined type definition and is ready to accept data items of that
+type.</p>
 </div>
 </div>
 <div id="accessing-data-in-a-dgeobj" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Accessing data in a DGEobj</h1>
-<p>Typically an analyst will need to access items stored in the DGEobj as the analysis progresses. Moreover, one of the main benefits of a well defined data object is that it facilitates data sharing. As such, there are several ways to extract one or more components from the DGEobj.</p>
+<h1><span class="header-section-number">6</span> Accessing data in a
+DGEobj</h1>
+<p>Typically an analyst will need to access items stored in the DGEobj
+as the analysis progresses. Moreover, one of the main benefits of a well
+defined data object is that it facilitates data sharing. As such, there
+are several ways to extract one or more components from the DGEobj.</p>
 <div id="retrieve-a-single-item" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Retrieve a single item</h2>
-<p>The <code>getItem</code> function allows the user to retrieve any item in a DGEobj by referencing its item name. Use the inventory function (described above) to check the contents of the DGEobj including the list of item names that are available.</p>
+<h2><span class="header-section-number">6.1</span> Retrieve a single
+item</h2>
+<p>The <code>getItem</code> function allows the user to retrieve any
+item in a DGEobj by referencing its item name. Use the inventory
+function (described above) to check the contents of the DGEobj including
+the list of item names that are available.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">getItem</span>(dgeObj, <span class="st">&quot;counts&quot;</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#peek at the first 4 columns</span></span>
@@ -1361,18 +1883,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ENSRNOG00000058808                     0                     0                 0.000                0.0000</code></pre>
 </div>
 <div id="retrieve-multiple-items" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Retrieve multiple items</h2>
-<p>There are several ways to retrieve multiple items as a list or data objects.</p>
-<p>The user can supply a list of item names to retrieve specific items. The items requested are returned in a list.</p>
+<h2><span class="header-section-number">6.2</span> Retrieve multiple
+items</h2>
+<p>There are several ways to retrieve multiple items as a list or data
+objects.</p>
+<p>The user can supply a list of item names to retrieve specific items.
+The items requested are returned in a list.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>MyItems <span class="ot">&lt;-</span> <span class="fu">getItems</span>(dgeObj, <span class="fu">list</span>(<span class="st">&quot;counts&quot;</span>, <span class="st">&quot;geneData&quot;</span>))</span></code></pre></div>
-<p>If all the items the user wants to retrieve are of the same type, the <code>getType</code> function may be used to retrieve them as a named list. For example, an analyst may want to retrieve a set of contrast results stored as topTable output.</p>
+<p>If all the items the user wants to retrieve are of the same type, the
+<code>getType</code> function may be used to retrieve them as a named
+list. For example, an analyst may want to retrieve a set of contrast
+results stored as topTable output.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The below example object is a post-workflow object that has multiple contrasts</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>FullWorkflowDGEobj <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">system.file</span>(<span class="st">&quot;exampleObj.RDS&quot;</span>, <span class="at">package =</span> <span class="st">&quot;DGEobj&quot;</span>))</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>MyContrasts <span class="ot">&lt;-</span> <span class="fu">getType</span>(FullWorkflowDGEobj, <span class="st">&quot;topTable&quot;</span>)</span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(MyContrasts)</span></code></pre></div>
 <pre><code>## [1] &quot;BDL_vs_Sham&quot;    &quot;EXT1024_vs_BDL&quot; &quot;Nint_vs_BDL&quot;    &quot;Sora_vs_BDL&quot;</code></pre>
-<p>Similarly, all items of the same baseType may be retrieved as a named list with the getBaseType function.</p>
+<p>Similarly, all items of the same baseType may be retrieved as a named
+list with the getBaseType function.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>MyColData <span class="ot">&lt;-</span> <span class="fu">getBaseType</span>(FullWorkflowDGEobj, <span class="st">&quot;col&quot;</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(MyColData)</span></code></pre></div>
 <pre><code>## [1] &quot;design&quot;               &quot;ReplicateGroupDesign&quot;</code></pre>
@@ -1385,38 +1914,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="ancillary-functions" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Ancillary Functions</h1>
+<h1><span class="header-section-number">7</span> Ancillary
+Functions</h1>
 <div id="function-basetype" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Function baseType</h2>
+<h2><span class="header-section-number">7.1</span> Function
+baseType</h2>
 <p>Returns the baseType for a given Type:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">baseType</span>(dgeObj, <span class="st">&quot;DGEList&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;assay&quot;</code></pre>
 </div>
 <div id="querying-metadata-stored-in-attributes" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Querying Metadata Stored in Attributes</h2>
-<p>Certain metadata about a project can be stored in the attributes of the DGEobj. Similarly, each item deposited in a DGEobj can have it’s own set of attributes. Both of these types of attributes can be easily accessed with the base R <code>attr</code> function.</p>
-<p>The <code>showMeta</code> function will return a named list of all attributes of a DGEobj.</p>
+<h2><span class="header-section-number">7.2</span> Querying Metadata
+Stored in Attributes</h2>
+<p>Certain metadata about a project can be stored in the attributes of
+the DGEobj. Similarly, each item deposited in a DGEobj can have it’s own
+set of attributes. Both of these types of attributes can be easily
+accessed with the base R <code>attr</code> function.</p>
+<p>The <code>showMeta</code> function will return a named list of all
+attributes of a DGEobj.</p>
 <p>To retrieve a specific attribute:</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>keywords <span class="ot">&lt;-</span> <span class="fu">attr</span>(dgeObj, <span class="st">&quot;Keywords&quot;</span>)</span></code></pre></div>
-<p>To retrieve an attribute from an item, use dollar sign syntax to reference the item:</p>
+<p>To retrieve an attribute from an item, use dollar sign syntax to
+reference the item:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="fu">attr</span>(FullWorkflowDGEobj<span class="sc">$</span>ReplicateGroupDesign, <span class="st">&quot;formula&quot;</span>)</span></code></pre></div>
 </div>
 <div id="function-rmitem" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Function rmItem</h2>
-<p>For common workflow usage, the DGEobj should be considered read-only. Items are added during the workflow and should not be modified further. Thus, under the normal intended usage, no items should be removed. Although, its use is discouraged, for completeness, a <code>rmItem</code> function exists.</p>
+<p>For common workflow usage, the DGEobj should be considered read-only.
+Items are added during the workflow and should not be modified further.
+Thus, under the normal intended usage, no items should be removed.
+Although, its use is discouraged, for completeness, a
+<code>rmItem</code> function exists.</p>
 <p>To delete an item from a DGEobj:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>MyDgeObj <span class="ot">&lt;-</span> <span class="fu">rmItem</span>(dgeObj, <span class="st">&quot;granges&quot;</span>)</span></code></pre></div>
 </div>
 <div id="function-setattributes" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Function setAttributes</h2>
-<p>To add or update a single attribute, use the base R<code>attr</code> function:</p>
+<h2><span class="header-section-number">7.4</span> Function
+setAttributes</h2>
+<p>To add or update a single attribute, use the base R<code>attr</code>
+function:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(dgeObj, <span class="st">&quot;Tissue&quot;</span>)  <span class="ot">&lt;-</span> <span class="st">&quot;Liver&quot;</span></span></code></pre></div>
-<p>The <code>setAttributes</code> function allows attaching a named list of attributes. Unlike the base R attributes function, setAttributes will add or update the named attributes without deleting any existing attributes.</p>
+<p>The <code>setAttributes</code> function allows attaching a named list
+of attributes. Unlike the base R attributes function, setAttributes will
+add or update the named attributes without deleting any existing
+attributes.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>newDgeObj <span class="ot">&lt;-</span> <span class="fu">setAttributes</span>(dgeObj, <span class="fu">list</span>(<span class="at">date=</span><span class="fu">date</span>(), <span class="at">analyst=</span><span class="st">&quot;JRT&quot;</span>))</span></code></pre></div>
 </div>
 <div id="function-showmeta" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Function showMeta</h2>
-<p>This function returns any project annotation attached as attributes to the DGEobj using function <code>annotateDGEobj</code>. It returns the attributes as a two column dataframe of Attribute/Value pairs. It only returns attributes with character values.</p>
+<h2><span class="header-section-number">7.5</span> Function
+showMeta</h2>
+<p>This function returns any project annotation attached as attributes
+to the DGEobj using function <code>annotateDGEobj</code>. It returns the
+attributes as a two column dataframe of Attribute/Value pairs. It only
+returns attributes with character values.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">showMeta</span>(dgeObj))</span></code></pre></div>
 <table>
 <colgroup>
@@ -1476,7 +2026,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td align="left">Description</td>
-<td align="left">Rat livers slices from sham or BDL +/- efficacious treatments incubated in vitro</td>
+<td align="left">Rat livers slices from sham or BDL +/- efficacious
+treatments incubated in vitro</td>
 </tr>
 <tr class="odd">
 <td align="left">Keywords</td>
@@ -1547,32 +2098,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="technical-information" class="section level1" number="8">
-<h1><span class="header-section-number">8</span> Technical Information</h1>
-<p>Fundamentally, a DGEobj is a named list of data items. R attributes are used to store information about the whole project as well as individual data items. Attributes are used to store project metadata supplied by the analyst. Attributes are also used to store data types and relationships in order to properly document the workflow.</p>
+<h1><span class="header-section-number">8</span> Technical
+Information</h1>
+<p>Fundamentally, a DGEobj is a named list of data items. R attributes
+are used to store information about the whole project as well as
+individual data items. Attributes are used to store project metadata
+supplied by the analyst. Attributes are also used to store data types
+and relationships in order to properly document the workflow.</p>
 <div id="project-meta-data" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Project Meta Data</h2>
-<p>User supplied meta data in the form of key/value pairs are attached to the DGEobj as attributes where the attribute name is the key and the attribute value is a character string. These metaData attributes can be loaded from a text file using function <code>annotateDGEobj</code> or can be manipulated individually with the base R <code>attr</code> function. The <code>showMeta</code> function displays these user supplied attributes.</p>
+<h2><span class="header-section-number">8.1</span> Project Meta
+Data</h2>
+<p>User supplied meta data in the form of key/value pairs are attached
+to the DGEobj as attributes where the attribute name is the key and the
+attribute value is a character string. These metaData attributes can be
+loaded from a text file using function <code>annotateDGEobj</code> or
+can be manipulated individually with the base R <code>attr</code>
+function. The <code>showMeta</code> function displays these user
+supplied attributes.</p>
 </div>
 <div id="workflow-attributes" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Workflow attributes</h2>
-<p>Several attributes are used to capture information about each data item (“type”, “basetype”, “dateCreated” and “funArgs.”), as well as relationships between them (“parent”). The <code>inventory</code> function provides a convenient table view of these attributes. Operationally, the value of each of these attributes is a named list where the names are the item names and the value is the value for that item. For example, to query just the basetype attribute of the “design” itemName:</p>
+<h2><span class="header-section-number">8.2</span> Workflow
+attributes</h2>
+<p>Several attributes are used to capture information about each data
+item (“type”, “basetype”, “dateCreated” and “funArgs.”), as well as
+relationships between them (“parent”). The <code>inventory</code>
+function provides a convenient table view of these attributes.
+Operationally, the value of each of these attributes is a named list
+where the names are the item names and the value is the value for that
+item. For example, to query just the basetype attribute of the “design”
+itemName:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(dgeObj, <span class="st">&quot;basetype&quot;</span>)[[<span class="st">&quot;design&quot;</span>]]</span></code></pre></div>
 <pre><code>## [1] &quot;col&quot;</code></pre>
 </div>
 <div id="customizing-the-dgeobj-definition-for-new-data-types" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Customizing the DGEobj Definition for New Data Types</h2>
-<p>A class DGEobjDef has been created to define the data types acceptable to a DGEobj and also allow for the definition of new datatypes as needed. A default DGEobjDef includes data types for gene expression (Affymetrix and RNA-Seq) applications. The user may define additional levels and data types when initializing a DGEobjDef object (initDGEobjDef function).</p>
+<h2><span class="header-section-number">8.3</span> Customizing the
+DGEobj Definition for New Data Types</h2>
+<p>A class DGEobjDef has been created to define the data types
+acceptable to a DGEobj and also allow for the definition of new
+datatypes as needed. A default DGEobjDef includes data types for gene
+expression (Affymetrix and RNA-Seq) applications. The user may define
+additional levels and data types when initializing a DGEobjDef object
+(initDGEobjDef function).</p>
 <p>To return the default DGEobjDef:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>defaultDGEobjDef <span class="ot">&lt;-</span> <span class="fu">initDGEobjDef</span>()</span></code></pre></div>
-<p>The initDGEobj function uses a default DGEobj definition tailored for the limma/voom workflow. If new data types are needed to support a different workflow, the user should define the new data types during a call to initDGEobjDef, and before calling the DGEobj constructor (initDGEobj). The initDGEobjDef function returns a DGEobjDef class object that can then be passed explicitly to initDGEobj.</p>
+<p>The initDGEobj function uses a default DGEobj definition tailored for
+the limma/voom workflow. If new data types are needed to support a
+different workflow, the user should define the new data types during a
+call to initDGEobjDef, and before calling the DGEobj constructor
+(initDGEobj). The initDGEobjDef function returns a DGEobjDef class
+object that can then be passed explicitly to initDGEobj.</p>
 <p>There are four optional arguments to initDGEobjDef:</p>
 <ul>
-<li><em>levels</em>: A character string or vector of new level names.</li>
-<li><em>primaryAssayNames</em>: A character string or vector of itemNames for the primary assay matrix for each level. Length must match length(levels).</li>
-<li><em>types</em>: A named character vector of new data types. Names represent the type name and values define the basetype for this type.</li>
-<li><em>uniqueTypes</em>: Adding a type name to this character vector restricts that data type to one instance per DGEobj.</li>
+<li><em>levels</em>: A character string or vector of new level
+names.</li>
+<li><em>primaryAssayNames</em>: A character string or vector of
+itemNames for the primary assay matrix for each level. Length must match
+length(levels).</li>
+<li><em>types</em>: A named character vector of new data types. Names
+represent the type name and values define the basetype for this
+type.</li>
+<li><em>uniqueTypes</em>: Adding a type name to this character vector
+restricts that data type to one instance per DGEobj.</li>
 </ul>
-<p>The example below defines new types to accommodate metabolomics data.</p>
+<p>The example below defines new types to accommodate metabolomics
+data.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate some data</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>nr <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dgeObj)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> <span class="fu">ncol</span>(dgeObj)</span>
@@ -1683,14 +2272,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>There are simple dimension-based criteria to determine the basetype of a new datatype.</p>
+<p>There are simple dimension-based criteria to determine the basetype
+of a new datatype.</p>
 <ul>
-<li>If both row and column dimensions match the primary assay data, the new object is an assay.</li>
-<li>If the <strong>row</strong> dimension of the new data matches the <strong>row</strong> dimension of the primary assay data, the new data type is a “row” basetype.</li>
-<li>If the <strong>row</strong> dimension of the new data matches the <strong>column</strong> dimension of the primary assay data, the new data type is “col” basetype.</li>
-<li>If the new data type does not match row or col dimensions, it is a “meta” basetype.</li>
+<li>If both row and column dimensions match the primary assay data, the
+new object is an assay.</li>
+<li>If the <strong>row</strong> dimension of the new data matches the
+<strong>row</strong> dimension of the primary assay data, the new data
+type is a “row” basetype.</li>
+<li>If the <strong>row</strong> dimension of the new data matches the
+<strong>column</strong> dimension of the primary assay data, the new
+data type is “col” basetype.</li>
+<li>If the new data type does not match row or col dimensions, it is a
+“meta” basetype.</li>
 </ul>
-<p>The DGEobj definitions created during initialization or added post-hoc by the newType function, are stored the “objDef” attribute of the DGEobj.</p>
+<p>The DGEobj definitions created during initialization or added
+post-hoc by the newType function, are stored the “objDef” attribute of
+the DGEobj.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">attr</span>(dgeObj, <span class="st">&quot;objDef&quot;</span>))</span></code></pre></div>
 <pre><code>## List of 5
 ##  $ basetype         : Named chr [1:4] &quot;row&quot; &quot;col&quot; &quot;assay&quot; &quot;meta&quot;
